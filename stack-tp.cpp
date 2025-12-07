@@ -10,14 +10,14 @@
 //      (qui testent si la pile est resp. vide ou pleine)
 //      il faut les utiliser dans votre code de push et pop
 
-void print(int *stack, int size)
+void print(int *stack, int size, int nb)
 // cette fonction affiche les entiers empilés
 {
     std::cout << "[ ";
     int i = 0;
     while (i < size)
     {
-        std::cout << stack[i] << std::endl;
+        std::cout << stack[i] << " ";
         i = i + 1;
     }
     std::cout << "[" << std::endl;
@@ -50,40 +50,40 @@ bool is_full(int size, int nb)
     }
 }
 
-void push(int *stack, int size, int nb, int a)
+void push(int *stack, int size, int &nb, int a)
 // cette fonction ajoute un entier à la pile passé en argument
 // elle doit s'assurer que la pile n'est pas pleine avant d'empiler
 // elle lance une exception si problème
 {
     
     if (is_full(size, nb)){
-        throw std::invalid_argument(std::string("we throw an exception of type: invalid_argument ") + std::to_string(i));
+        throw std::invalid_argument("push error: stack is full");
     }
-    int stack[nb] = a;
+    stack[nb] = a;
     nb = nb + 1;
 
 }
 
-int top(int stack, int size, int nb) // (cette fonction ne dépile pas)
+int top(int *stack, int size, int &nb) // (cette fonction ne dépile pas)
 // cette fonction retourne l'entier en haut de la pile (le dernier empilé)
 // à la sortie de cette fonction l'élément retourné reste dans la pile
 // elle doit s'assurer que la pile n'est pas vide avant de la dépiler
 // elle lance une exception si problème
 {
     if (is_empty(size, nb)){
-        throw std::invalid_argument(std::string("we throw an exception of type: invalid_argument ") + std::to_string(i));
+        throw std::invalid_argument("top error: stack is empty");
     }
-    std::cout << stack[nb] << std::endl;
+    return stack[nb - 1];
 }
 
-int pop(int stack, int size, int nb) // (cette fonction dépile)
+int pop(int *stack, int size, int &nb) // (cette fonction dépile)
 // cette fonction retourne l'entier en haut de la pile (le dernier empilé)
 // à la sortie de cette fonction l'élément retourné n'est plus compté dans la pile
 // elle doit s'assurer que la pile n'est pas vide avant de la dépiler
 // elle lance une exception si problème
 {
     if (is_empty(size, nb)){
-        throw std::invalid_argument(std::string("we throw an exception of type: invalid_argument ") + std::to_string(i));
+        throw std::invalid_argument("pop error: stack is empty");
     }
     int e = top(stack, size, nb);
     nb = nb - 1;
