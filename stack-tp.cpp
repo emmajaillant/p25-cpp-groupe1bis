@@ -90,6 +90,17 @@ int pop(int *stack, int size, int &nb) // (cette fonction dépile)
     return e; 
 }
 
+int* create(int size){
+    //int stack[size]; ça c'était le code faux
+    // return stack;
+    int * t = new int[size]; //là on a  crée un tableau, ça crée autant de int collés que de  size
+    return t;
+}
+
+void delete_stack(int* stack){
+    delete[] stack; //comment appeler delete ? 
+}
+
 #include <stdexcept>
 // https://en.cppreference.com/w/cpp/header/stdexcept.html
 // pour un exemple d'exception voir le fichier exception.cpp
